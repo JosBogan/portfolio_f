@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Maven+Pro|Raleway&display=swap" rel="stylesheet">
+  <link href="main.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/png" href="./assets/favicon.png">
+  <script src="https://kit.fontawesome.com/494369d355.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+  <script src="app.js"></script>
+  <title>Jos Bogan</title>
+</head>
+<body>
+  <div class="menu_overlay" id="menu_overlay">
+    <ul class="menu_list">
+      <li><div><a id="homeButton" href="#">Home</a></div></li>
+      <li><div><a id="aboutButton" href="#about_me">About me</a></div></li>
+      <li><div><a id="projectsButton" href="#projects">Projects</a></div></li>
+      <li><div><a id="contactButton" href="#contact">Contact</a></div></li>
+    </ul>
+  </div>
+
+  <div class="burger_menu" id="burger_menu"><div class="burger_line burger_line_top"></div><div class="burger_line burger_line_bot"></div></div>
+  <div class="name_tag" id="name_tag">Jos Bogan</div>
+
+  <div class="quick_nav">
+    <ul class="quick_nav_list">
+      <a class="quick_nav_buttons" data-id="0"><li class="quick_nav_line"></li></a>
+      <a class="quick_nav_buttons" data-id="1"><li class="quick_nav_line"></li></a>
+      <a class="quick_nav_buttons" data-id="2"><li class="quick_nav_line"></li></a>
+      <a class="quick_nav_buttons" data-id="3"><li class="quick_nav_line"></li></a>
+    </ul>
+  </div>
+
+  <section class="home outer_content_container" id="home">
+    <canvas class="lines_canvas_bg canvas_common" id="lines_canvas_bg"></canvas>
+    <canvas class="lines_canvas_fg canvas_common" id="lines_canvas_fg"></canvas>
+    <section class="title_section" id="title_section">
+      <div class="title_container">
+        <h1 class="name_title">Jos</br>Bogan</h1>
+        <h2 class="sub_title"><span class="text_accent">Software</span> Dev</h2>
+      </div>
+    </section>
+  </section>
+  <div class="mid_section_content_container">
+  <canvas class="bubble_canvas canvas_common" id="bubble_canvas" width="" height=""></canvas>
+  <section class="projects outer_content_container" id="projects">
+    <div class="projects_container">
+      <div class="project_container">
+        <button><div class="project_box project_upper" data-name="kaku">
+          <div class="project_image project_image_kaku"></div>
+          <h2>Kaku</h2>
+        </div></button>
+        <div class="project_box project_lower" data-name="kaku">
+          <h3 class="project_card_stack">JavaScript | React.js | Python | Django | PostgreSQL</h3>
+          <p class="project_card_text">Kaku is a customisable fully table-based project management system</p>
+          <div class="project_card_links">
+            <a target="_blank" href="https://github.com/JosBogan/sei-project-4"><i class="devicon-github-plain devicon_svg"></i></a>
+            <a target="_blank" href="https://j-kaku.herokuapp.com/"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="project_container">
+        <button><div class="project_box project_upper" data-name="games">
+          <div class="project_image project_image_games"></div>
+          <h2>Games Portal</h2>
+        </div></button>
+        <div class="project_box project_lower" data-name="games">
+          <h3 class="project_card_stack">JavaScript</h3>
+          <p class="project_card_text">The Games Portal is a hub for three games; Tetris, FL-Trorn and frogger, alongside a localstorage leaderboard</p>
+          <div class="project_card_links">
+            <a target="_blank" href="https://github.com/JosBogan/sei-project-1"><i class="devicon-github-plain devicon_svg"></i></a>
+            <a target="_blank" href="https://josbogan.github.io/sei-project-1/"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="project_container">
+        <button><div class="project_box project_upper" data-name="beehive">
+          <div class="project_image project_image_beehive"></div>
+          <h2>Beehive</h2>
+        </div></button>
+        <div class="project_box project_lower" data-name="beehive">
+          <h3 class="project_card_stack">JavaScript | React,js | Node.js | Express.js | Mongoose | MongoDB</h3>
+          <p class="project_card_text">Beehive is a platform for creatives to look for work, collaborate on projects and put them on display</p>
+          <div class="project_card_links">
+            <a target="_blank" href="https://github.com/JosBogan/sei-project-3"><i class="devicon-github-plain devicon_svg"></i></a>
+            <a target="_blank" href="https://j-beehive.herokuapp.com/"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="project_container">
+        <button><div class="project_box project_upper" data-name="asteroid">
+          <div class="project_image project_image_asteroid"></div>
+          <h2>Asteroid Catasteroid</h2>
+        </div></button>
+        <div class="project_box project_lower" data-name="asteroid">
+          <h3 class="project_card_stack">JavaScript | React.js</h3>
+          <p class="project_card_text">Asteroid Catasteroid is an application that consumes Nasa's NeoWs API to give users information about asteroids on a given day</p>
+          <div class="project_card_links">
+            <a target="_blank" href="https://github.com/JosBogan/sei-project-2"><i class="devicon-github-plain devicon_svg"></i></a>
+            <a target="_blank" href="https://j-asteroid-catasteroid.herokuapp.com/"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="project_container">
+        <button><div class="project_box project_upper" data-name="langalore">
+          <div class="project_image project_image_langalore"></div>
+          <h2>Langalore</h2>
+        </div></button>
+        <div class="project_box project_lower" data-name="langalore">
+          <h3 class="project_card_stack">JavaScript | Python | Django | PostgreSQL</h3>
+          <p class="project_card_text">Langalore is an WIP interactive language learning platform</p>
+          <div class="project_card_links">
+            <a target="_blank" href="https://github.com/JosBogan/languages"><i class="devicon-github-plain devicon_svg"></i></a>
+            <a target="_blank" href="https://langalore.herokuapp.com/"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="project_container">
+        <button><div class="project_box project_upper" data-name="minesweeper">
+          <div class="project_image project_image_minesweeper"></div>
+          <h2>Minesweeper</h2>
+        </div></button>
+        <div class="project_box project_lower" data-name="minesweeper">
+          <h3 class="project_card_stack">JavaScript</h3>
+          <p class="project_card_text">A small minesweeper with both a 2D and 3D version</p>
+          <div class="project_card_links">
+            <a target="_blank" href="https://github.com/JosBogan/Minesweeper"><i class="devicon-github-plain devicon_svg"></i></a>
+            <a target="_blank" href="https://josbogan.github.io/Minesweeper/"><i class="fas fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+  <section class="about_me" id="about_me">
+    <!-- <div class="about_me_inner"> -->
+        <ul class="about_toggle_container">
+          <li data-name="about_me" class="about_toggle"><h3>About Me</h3></li>
+          <li data-name="skills" class="about_toggle about_toggle_on"><h3>Skills</h3></li>
+          <li data-name="interests" class="about_toggle"><h3>Interests</h3></li>
+        </ul>
+        <div class="about_content">
+      <div data-name="about_me" class="about_content_inner about_intro">
+        <p>
+          My first exposure to programming came through the Unreal game engine where I quickly fell in love with the logical problem solving of its scripting, despite initially approaching it from a creative outlook. After teaching myself some of the basics, I ultimately decided to enrol in General Assembly’s Software Engineering Course.
+          </p>
+        </br>
+          <p>
+          I am driven by a desire to be a valued asset to my team and I aim to be someone that others can rely on. I bring a solid foundation and understanding of core technical skills, strong problem-solving and a positive attitude into the workplace environment. I am currently looking for a full-stack role that will allow me to learn and grow as a developer.
+          </p>
+      </div>
+      <div data-name="skills" class="about_content_inner about_skills">
+        <div class="about_me_skills_content">
+          <div class="devicon">
+            <i class="devicon-css3-plain devicon_svg"></i>
+            <h4>CSS3</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-django-plain-wordmark devicon_svg"></i>
+            <h4>Django</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-express-original devicon_svg"></i>
+            <h4>Express</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-github-plain devicon_svg"></i>
+            <h4>GitHub</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-git-plain devicon_svg"></i>
+            <h4>Git</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-heroku-original devicon_svg"></i>
+            <h4>Heroku</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-html5-plain devicon_svg"></i>
+            <h4>HTML5</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-javascript-plain devicon_svg"></i>
+            <h4>JavaScript</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-mocha-plain devicon_svg"></i>
+            <h4>Mocha</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-mongodb-plain devicon_svg"></i>
+            <h4>MongoDB</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-nodejs-plain devicon_svg"></i>
+            <h4>Node.js</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-postgresql-plain devicon_svg"></i>
+            <h4>PostgreSQL</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-python-plain devicon_svg"></i>
+            <h4>Python</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-react-original devicon_svg"></i>
+            <h4>React.js</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-sass-original devicon_svg"></i>
+            <h4>Sass</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-slack-plain devicon_svg"></i>
+            <h4>Slack</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-trello-plain devicon_svg"></i>
+            <h4>Trello</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-webpack-plain devicon_svg"></i>
+            <h4>Webpack</h4>
+          </div>
+          <div class="devicon">
+            <i class="devicon-visualstudio-plain devicon_svg"></i>
+            <h4>V.Studio</h4>
+          </div>
+        </div>
+      </div>
+      <div data-name="interests" class="about_content_inner about_interests">
+        <p>
+        I have always had a love for playing games, whether they be video games, sports, board games or anything inbetween. In the last couple of years however I've started to play table-top games, mainly Dungeons and Dragons, which I quickly fell in love with. It's a great way to mess about with friends and exercise my creative imagination!
+        </p>
+      </br>
+        <p>
+        I also love to travel! In 2017 I spent a year cycling from the north of Japan to the mainland's southern most tip. It was an amazing adventure and along the way I fell in love with the country, from its landscape to the people and food. My Japanese is patchy but I'm still learning and striving to get better.
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
+</div>
+  <section class="contact" id="contact">
+    <div class="contact_container">
+      <h1 class="contact_header">Get in touch!</h1>
+      <ul class="contact_container_inner">
+        <li><a href="mailto:josbogan@gmail.com">
+          <i class="fas fa-envelope contact_page_icon"></i><span class="purple_span">josbogan</span>@gmail.com
+        </a></li>
+        <li><a href="https://linkedin.com/in/jos-bogan" target="_blank">
+          <i class="fab fa-linkedin contact_page_icon"></i>linkedin.com/in/<span class="purple_span">jos-bogan</span>
+        </a></li>
+        <li><a href="https://github.com/josbogan" target="_blank">
+          <i class="fab fa-github-square contact_page_icon"></i>github.com/<span class="purple_span">josbogan</span>
+        </a></li>
+      </ul>
+    <!-- </div> -->
+  </section>
+</body>
+</html>
