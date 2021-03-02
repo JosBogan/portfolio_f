@@ -28,8 +28,11 @@ function init() {
   const paragraphLines = document.querySelectorAll('.paragraph_line')
   const devicons = document.querySelectorAll('.devicon')
   const contactContainer = document.querySelector('.contact_container')
+  const aboutInterests = document.querySelector('.about_interests')
+  const aboutIntro = document.querySelector('.about_intro')
 
-  const scrollAnimElements = [...paragraphLines, ...devicons, contactContainer]
+
+  const scrollAnimElements = [...paragraphLines, ...devicons, contactContainer, aboutInterests, aboutIntro]
 
   // ! Canvas Lines Elements
   
@@ -595,6 +598,12 @@ function init() {
             break
           case 'contact_container':
             element.classList.add('show_contact')
+            break
+          case 'about_content_inner about_interests':
+            element.classList.add('text_slide')
+            break
+          case 'about_content_inner about_intro':
+            element.classList.add('text_slide')
             break
         }
       }

@@ -605,6 +605,11 @@ body {
   margin: 10px 0;
 }
 
+.about_intro, .about_interests {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
 /* .text_left {
   text-align: left;
 } */
@@ -692,6 +697,10 @@ body {
   animation: expand_contact 0.5s ease-out 0s 1 normal both;
 }
 
+.text_slide {
+  animation: text_slide 0.5s ease-out 0s 1 normal both;
+}
+
 
 @keyframes slide_right {
   0% {
@@ -724,6 +733,18 @@ body {
   100% {
     width: 35vw;
     height: 35vw;
+  }
+}
+
+@keyframes text_slide {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
   }
 }
 
