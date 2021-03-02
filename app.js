@@ -24,6 +24,13 @@ function init() {
 
   const menuButtons = [menuButton, projectsButton, aboutButton, contactButton]
 
+
+  const paragraphLines = document.querySelectorAll('.paragraph_line')
+  const devicons = document.querySelectorAll('.devicon')
+  const contactContainer = document.querySelector('.contact_container')
+
+  const scrollAnimElements = [...paragraphLines, ...devicons, contactContainer]
+
   // ! Canvas Lines Elements
   
   const linesCanvasBg = document.querySelector('#lines_canvas_bg')
@@ -31,6 +38,18 @@ function init() {
 
   const linesCanvasFg = document.querySelector('#lines_canvas_fg')
   const linesCtxFg = linesCanvasFg.getContext('2d')
+
+  // ! Canvas LinesBot Elements
+
+  const linesCanvasBgBot = document.querySelector('#lines_canvas_bg_bot')
+  const linesCtxBgBot = linesCanvasBgBot.getContext('2d')
+
+  const linesCanvasFgBot = document.querySelector('#lines_canvas_fg_bot')
+  const linesCtxFgBot = linesCanvasFgBot.getContext('2d')
+
+  const ctxArray = [linesCtxFg, linesCtxFgBot]
+
+  console.log(ctxArray.width)
 
 
   // ! Canvas Bubble Elements
@@ -53,18 +72,21 @@ function init() {
 
   let burgerOpen = false
 
-  let pastMouse = null
+  let mouseLocation
 
-  const projectStates = {
-    kaku: false,
-    asteroid: false,
-    beehive: false,
-    games: false
-  }
+  let pastClippedMouseLocation
+
+  // ! OLD TILL 72
+
+  const pastMouseTop = null
+  const pastMouseBot = null
 
   // !  Lines Variables
 
-  const arr = []
+  const canvasLinesArray = []
+
+  const canvasLinesArrayTop = []
+  const canvasLinesArrayBot = []
 
   // ! Bubble Variables 
 
@@ -103,11 +125,22 @@ function init() {
   const linesWidth = linesCanvasBg.offsetWidth
   const linesHeight = linesCanvasBg.offsetHeight
 
+  // ! Initialising Lines background Canvas BOT
 
-  // const dimensions = {
-  //   x: 21,
-  //   y: 10
-  // }
+  linesCanvasBgBot.width = linesCanvasBgBot.parentElement.getBoundingClientRect().width
+  linesCanvasBgBot.height = linesCanvasBgBot.parentElement.getBoundingClientRect().height
+  linesCanvasFgBot.width = linesCanvasFgBot.parentElement.getBoundingClientRect().width
+  linesCanvasFgBot.height = linesCanvasFgBot.parentElement.getBoundingClientRect().height
+
+  const linesWidthBot = linesCanvasBgBot.offsetWidth
+  const linesHeightBot = linesCanvasBgBot.offsetHeight
+
+
+
+  const dimensionsBot = {
+    x: 20,
+    y: 10
+  }
 
   const dimensions = {
     x: 56,
@@ -119,7 +152,14 @@ function init() {
     y: linesHeight / dimensions.y
   }
 
+  const gridDimensionsBot = {
+    x: linesWidth / dimensions.x,
+    y: linesHeight / dimensions.y
+  }
+
   const lineHeights = []
+
+  // ! TOP GRID INITIALISIONA
 
   for (let x = gridDimensions.x / 2; x < window.innerWidth; x += gridDimensions.x) {
     // ! Hard coded line distance method - find programmatic
@@ -139,7 +179,26 @@ function init() {
     }
   }
 
-  console.log(lineHeights)
+  // ! BOT GRID INITIALISATION
+
+  for (let x = gridDimensionsBot.x / 2; x < window.innerWidth; x += gridDimensionsBot.x) {
+    // ! Hard coded line distance method - find programmatic
+    // let start = 0.1
+    for (let y = gridDimensionsBot.y / 2; y < window.innerHeight; y += gridDimensionsBot.y) {
+      linesCtxBgBot.fillStyle = '#AA7DCE'
+      linesCtxBgBot.beginPath()
+      
+      // linesCtxBg.arc(x, y + start , 1, 0, 2 * Math.PI)
+      // ! Better method, but need to find solution for mouse clipping
+      linesCtxBgBot.arc(x, y, 1, 0, 2 * Math.PI)
+      linesCtxBgBot.fill()
+      // if (lineHeights.length < 28) lineHeights.push(y + start)
+
+      // ! Hard coded line distance method - find programmatic
+      // start *= 1.65
+    }
+  }
+
 
   // ! Initialising the Bubbles canvas
 
@@ -216,44 +275,83 @@ function init() {
 
   }
 
-  function lineMouseMove(e) {
+  // function lineMouseMoveTop(e) {
 
-    //! INCLUDE CHECKS TO SEE IF THE MOUSE IS OUTSIDE THE ELEMETN BOUNDS AND RETURN HERE IF IT IS!
+  //   //! INCLUDE CHECKS TO SEE IF THE MOUSE IS OUTSIDE THE ELEMETN BOUNDS AND RETURN HERE IF IT IS!
 
-    const cellX = (parseInt((e.pageX) / gridDimensions.x) * gridDimensions.x) + gridDimensions.x / 2
+  //   const cellX = (parseInt((e.pageX) / gridDimensions.x) * gridDimensions.x) + gridDimensions.x / 2
 
-    //! Old method - try maths
-    const cellY = (parseInt((e.pageY) / gridDimensions.y) * gridDimensions.y) + gridDimensions.y / 2
+  //   //! Old method - try maths
+  //   const cellY = (parseInt((e.pageY) / gridDimensions.y) * gridDimensions.y) + gridDimensions.y / 2
 
-    // ! Work around - Try to find programmatic method!
-    // const cellY = lineHeights.find((line, i) => {
-    //   if (e.pageY < lineHeights[0] + ((lineHeights[1] - lineHeights[0]) / 2)) {
-    //     return i === 0
-    //   }
-    //   return (
-    //     e.pageY < (line + (Math.abs(lineHeights[i + 1] - lineHeights[i]) / 2)) && e.pageY > (line - (Math.abs(lineHeights[i - 1] + lineHeights[i]) / 2))
-    //   )
-    // })
+  //   // ! Work around - Try to find programmatic method!
+  //   // const cellY = lineHeights.find((line, i) => {
+  //   //   if (e.pageY < lineHeights[0] + ((lineHeights[1] - lineHeights[0]) / 2)) {
+  //   //     return i === 0
+  //   //   }
+  //   //   return (
+  //   //     e.pageY < (line + (Math.abs(lineHeights[i + 1] - lineHeights[i]) / 2)) && e.pageY > (line - (Math.abs(lineHeights[i - 1] + lineHeights[i]) / 2))
+  //   //   )
+  //   // })
 
     
-    if (!pastMouse) {
-      pastMouse = {
-        x: cellX,
-        y: cellY,
-        a: 1
-      }
-      return arr.push(pastMouse)
-    }
-    if (pastMouse.x !== cellX || pastMouse.y !== cellY) {
-      const newLocation = {
-        x: cellX,
-        y: cellY,
-        a: 1
-      }
-      arr.push(newLocation)
-      pastMouse = { ...newLocation }
-    }
-  }
+  //   if (!pastMouseTop) {
+  //     pastMouseTop = {
+  //       x: cellX,
+  //       y: cellY,
+  //       a: 1
+  //     }
+  //     return canvasLinesArrayTop.push(pastMouseTop)
+  //   }
+  //   if (pastMouseTop.x !== cellX || pastMouseTop.y !== cellY) {
+  //     const newLocation = {
+  //       x: cellX,
+  //       y: cellY,
+  //       a: 1
+  //     }
+  //     canvasLinesArrayTop.push(newLocation)
+  //     pastMouseTop = { ...newLocation }
+  //   }
+  // }
+
+  // function lineMouseMoveBot(e) {
+
+  //   //! INCLUDE CHECKS TO SEE IF THE MOUSE IS OUTSIDE THE ELEMETN BOUNDS AND RETURN HERE IF IT IS!
+
+  //   const cellX = (parseInt((e.pageX) / gridDimensionsBot.x) * gridDimensionsBot.x) + gridDimensionsBot.x / 2
+
+  //   const cellY =  (parseInt((e.pageY) / gridDimensionsBot.y) * gridDimensionsBot.y) + gridDimensionsBot.y / 2
+
+
+  //   // ! Work around - Try to find programmatic method!
+  //   // const cellY = lineHeights.find((line, i) => {
+  //   //   if (e.pageY < lineHeights[0] + ((lineHeights[1] - lineHeights[0]) / 2)) {
+  //   //     return i === 0
+  //   //   }
+  //   //   return (
+  //   //     e.pageY < (line + (Math.abs(lineHeights[i + 1] - lineHeights[i]) / 2)) && e.pageY > (line - (Math.abs(lineHeights[i - 1] + lineHeights[i]) / 2))
+  //   //   )
+  //   // })
+
+    
+  //   if (!pastMouseBot) {
+  //     pastMouseBot = {
+  //       x: cellX,
+  //       y: cellY,
+  //       a: 1
+  //     }
+  //     return canvasLinesArrayBot.push(pastMouseBot)
+  //   }
+  //   if (pastMouseBot.x !== cellX || pastMouseBot.y !== cellY) {
+  //     const newLocation = {
+  //       x: cellX,
+  //       y: cellY,
+  //       a: 1
+  //     }
+  //     canvasLinesArrayBot.push(newLocation)
+  //     pastMouseBot = { ...newLocation }
+  //   }
+  // }
 
   function bubbleCanvasMove(e) {
     clearTimeout(movementTimer)
@@ -263,8 +361,51 @@ function init() {
     movementTimer = setTimeout(clearMovement, 1000)
   }
 
+  function updateMousePosition(x, y) {
+    mouseLocation = {
+      x: x,
+      y: y
+    }
+  }
+
+  function addLinesOnMouseMove() {
+
+    if (mouseLocation.y > (linesCanvasBg.height + 20) && mouseLocation.y < window.pageYOffset + linesCanvasBgBot.getBoundingClientRect().top - 20) return
+    
+    const clipPointX = (parseInt((mouseLocation.x) / gridDimensions.x) * gridDimensions.x) + gridDimensions.x / 2
+
+    const clipPointY = (parseInt((mouseLocation.y) / gridDimensions.y) * gridDimensions.y) + gridDimensions.y / 2
+
+    if (!pastClippedMouseLocation) {
+      pastClippedMouseLocation = {
+        x: clipPointX,
+        y: clipPointY,
+        a: 1
+      }
+      return canvasLinesArray.push(pastClippedMouseLocation)
+    }
+
+    if (pastClippedMouseLocation.x !== clipPointX || pastClippedMouseLocation.y !== clipPointY) {
+      const newLocation = {
+        x: clipPointX,
+        y: clipPointY,
+        a: 1
+      }
+      canvasLinesArray.push(newLocation)
+      pastClippedMouseLocation = { ...newLocation }
+    }
+
+  }
+
   function moveMouseFunc(e) {
-    lineMouseMove(e)
+
+    updateMousePosition(e.pageX, e.pageY)
+    addLinesOnMouseMove()
+
+
+    // lineMouseMoveTop(e)
+    // lineMouseMoveBot(e)
+    // console.log(lin)
     bubbleCanvasMove(e)
   }
 
@@ -309,18 +450,32 @@ function init() {
 
   // ! onTick Canvas 
 
-  function lineCanvasTick() {
-    linesCtxFg.clearRect(0, 0, linesCanvasFg.width, linesCanvasFg.height)
-    for (let i = 0; i < arr.length - 1; i++) {
-      arr[i].a = arr[i].a - 0.02
-      linesCtxFg.beginPath()
-      linesCtxFg.lineWidth = 1
-      linesCtxFg.strokeStyle = 'rgba(170, 125, 206, ' + arr[i].a + ')'
-      linesCtxFg.moveTo(arr[i].x, arr[i].y)
-      linesCtxFg.lineTo(arr[i + 1].x, arr[i + 1].y)
-      linesCtxFg.stroke()
-      linesCtxFg.closePath()
-      if (arr[i].a < 0) arr.splice(i, 1)
+
+  function linesCanvasTick() {
+    if (!canvasLinesArray.length) return
+    // console.log('still here')
+    ctxArray.forEach(ctx => {
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    })
+
+    for (let i = 0; i < canvasLinesArray.length - 1; i++) {
+
+      const ctx = canvasLinesArray[i].y < linesCanvasBg.height + 50 ? ctxArray[0] : ctxArray[1]
+
+      const offset = window.pageYOffset + ctx.canvas.getBoundingClientRect().top
+
+      // console.log(offset)
+
+      canvasLinesArray[i].a = canvasLinesArray[i].a - 0.02
+      ctx.beginPath()
+      ctx.lineWidth = 1
+      ctx.strokeStyle = 'rgba(170, 125, 206, ' + canvasLinesArray[i].a + ')'
+      ctx.moveTo(canvasLinesArray[i].x, canvasLinesArray[i].y - offset)
+      ctx.lineTo(canvasLinesArray[i + 1].x, canvasLinesArray[i + 1].y - offset)
+      ctx.stroke()
+      ctx.closePath()
+      if (canvasLinesArray[i].a < 0) canvasLinesArray.splice(i, 1)
+
     }
   }
 
@@ -343,7 +498,7 @@ function init() {
           const vector = unitVector[0] * (magnitude / circleSpeed)
           // ISSUE OCURRING BECAUSE THE DISTANCE IS BEING HALVED EACH TIME TO IT NEVER ACTUALLY GETS BEYOND THE DISTANCE
           circle.position.x += vector
-          circle.direction[0] = vector
+          // circle.direction[0] = vector
         }
         if (
           !(circle.position.y + (unitVector[1] * (magnitude / circleSpeed)) + circle.radius >= bubbleContainer.height) &&
@@ -353,7 +508,7 @@ function init() {
           // circle.direction = [...v]
           // ISSUE OCURRING BECAUSE THE DISTANCE IS BEING HALVED EACH TIME TO IT NEVER ACTUALLY GETS BEYOND THE DISTANCE
           circle.position.y += vector
-          circle.direction[1] = vector
+          // circle.direction[1] = vector
         }
       } else {
         if (
@@ -380,7 +535,12 @@ function init() {
 
   function tick() {
     // ! Cut down processing power by dictating when these are set off!
-    lineCanvasTick()
+    //lineCanvasTick()
+    //lineCanvasTickBot()
+
+
+    linesCanvasTick()
+
     bubbleCanvasTick()
     window.requestAnimationFrame(tick)
   }
@@ -421,8 +581,24 @@ function init() {
     }
   }
 
-  function scrollAnims() {
-
+  function scrollAnims(event) {
+    console.log(window.pageYOffset)
+    scrollAnimElements.forEach(element => {
+      if (window.pageYOffset + (window.innerHeight - 200) >= element.getBoundingClientRect().top + window.pageYOffset) {
+        console.log(element.classList.value)
+        switch (element.classList.value) {
+          case 'paragraph_line':
+            element.classList.add('show')
+            break
+          case 'devicon':
+            element.classList.add('anim_right')
+            break
+          case 'contact_container':
+            element.classList.add('show_contact')
+            break
+        }
+      }
+    })
   }
 
   function closeWindow() {

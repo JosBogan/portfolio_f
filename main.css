@@ -8,6 +8,7 @@
   font-family: 'Raleway', sans-serif;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  color: white;
 }
 
 /* 
@@ -277,6 +278,8 @@ body {
 
   position: relative;
   width: 100%;
+  padding-top: 80px;
+  padding-bottom: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -553,12 +556,13 @@ body {
 }
 
 .about_content_inner {
-  display: none;
+  margin: 30px 0;
+  padding: 0 30px;
 }
 
 .about_content p {
   text-align: justify;
-  font-size: 1.1em;
+  /* font-size: 1.1em; */
   /* color: var(--dark); */
   color: white;
   line-height: 1.5;
@@ -582,6 +586,8 @@ body {
   margin: 15px 10px;
   /* color: var(--dark); */
   color: white;
+  opacity: 0;
+  transform: translateX(100px);
 }
 
 .devicon i {
@@ -591,12 +597,28 @@ body {
   margin-bottom: 10px;
 }
 
+.paragraph_line {
+  height: 5px;
+  border-radius: 5px;
+  width: 0%;
+  background-color: white;
+  margin: 10px 0;
+}
+
+/* .text_left {
+  text-align: left;
+} */
+
 /* Contact */
 
 .contact {
   /* background: white; */
   display: flex;
   justify-content: center;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
   /* padding-bottom: 90px; */
 }
 
@@ -607,11 +629,15 @@ body {
   flex-direction: column;
   align-items: center;
   background: whitesmoke;
-  width: 35vw;
-  height: 35vw;
-  min-width: 340px;
-  min-height: 340px;
+  /* width: 35vw;
+  height: 35vw; */
+  width: 0vw;
+  height: 0vw;
+  /* min-width: 340px;
+  min-height: 340px; */
   border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
 }
 
 .contact_header {
@@ -650,9 +676,22 @@ body {
   margin-right: 10px;
 }
 
-.anim_right {
-  animation: slide_right 1s ease-out 0s 1 normal forwards;
+.purple_span {
+  color: var(--floral_lavender);
 }
+
+.anim_right {
+  animation: slide_right 0.75s ease-out 0s 1 normal both;
+}
+
+.show {
+  animation: show 0.5s ease-out 0s 1 normal both;
+}
+
+.show_contact {
+  animation: expand_contact 0.5s ease-out 0s 1 normal both;
+}
+
 
 @keyframes slide_right {
   0% {
@@ -663,6 +702,28 @@ body {
   100% {
     opacity: 1;
     transform: translateX(0px);
+  }
+}
+
+@keyframes show {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes expand_contact {
+  0% {
+    width: 0vw;
+    height: 0vw;
+  }
+
+  100% {
+    width: 35vw;
+    height: 35vw;
   }
 }
 
