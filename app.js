@@ -52,7 +52,7 @@ function init() {
 
   const ctxArray = [linesCtxFg, linesCtxFgBot]
 
-  console.log(ctxArray.width)
+  // console.log(ctxArray.width)
 
 
   // ! Canvas Bubble Elements
@@ -143,6 +143,11 @@ function init() {
   const dimensionsBot = {
     x: 20,
     y: 10
+  }
+
+  const testDimensions = {
+    x: 40,
+    y: 40
   }
 
   const dimensions = {
@@ -557,6 +562,7 @@ function init() {
     const burgerLines = burgerMenu.childNodes
     switch (burgerOpen) {
       case true:
+        document.querySelector('body').style.overflow = 'auto'
         burgerLines[0].classList.remove('burger_line_top_clicked')
         burgerLines[1].classList.remove('burger_line_bot_clicked')
 
@@ -564,7 +570,8 @@ function init() {
         burgerOpen = false
         break
       case false:
-        console.log(burgerLines)
+        document.querySelector('body').style.overflow = 'hidden'
+        // console.log(burgerLines)
         burgerLines[0].classList.add('burger_line_top_clicked')
         burgerLines[1].classList.add('burger_line_bot_clicked')
         menuOverlay.classList.add('menu_overlay_open')
@@ -585,10 +592,10 @@ function init() {
   }
 
   function scrollAnims(event) {
-    console.log(window.pageYOffset)
+    // console.log(window.pageYOffset)
     scrollAnimElements.forEach(element => {
-      if (window.pageYOffset + (window.innerHeight - 200) >= element.getBoundingClientRect().top + window.pageYOffset) {
-        console.log(element.classList.value)
+      if (window.pageYOffset + (window.innerHeight - 100) >= element.getBoundingClientRect().top + window.pageYOffset) {
+        // console.log(element.classList.value)
         switch (element.classList.value) {
           case 'paragraph_line':
             element.classList.add('show')
@@ -616,6 +623,7 @@ function init() {
     burgerLines[1].classList.remove('burger_line_bot_clicked')
     menuOverlay.classList.remove('menu_overlay_open')
     burgerOpen = false
+    document.querySelector('body').style.overflow = 'auto'
   }
 
 

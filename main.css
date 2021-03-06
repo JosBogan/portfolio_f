@@ -210,12 +210,37 @@ body {
 /* ! Name Tag */
 
 .name_tag {
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
   position: fixed;
   top: 50px;
   left: 50px;
   font-family: 'Raleway', sans-serif;
   color: var(--primary_text);
   font-size: 1.2em;
+  z-index: 2;
+}
+
+.tame_tag_contact {
+  display: flex;
+  margin-left: 20px;
+}
+
+.name_tag_icon {
+  margin: 0 5px;
+  opacity: 0.5;
+  transition: all 0.1s;
+}
+
+.name_tag_icon:hover {
+  opacity: 1;
+}
+
+.name_tag i {
+
+  font-size: 1.2em;
+  color: white;
 }
 
 /* ! QUICK NAV */
