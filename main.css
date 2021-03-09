@@ -328,7 +328,7 @@ body {
   font-size: 6em;
   z-index: 1;
   color: var(--primary_text);
-  animation: slide_right 0.7s ease-out 0s 1 normal forwards;
+  animation: slide_right 0.7s cubic-bezier(.25,.05,.45,1.45) 0s 1 normal forwards;
 }
 
 .title_container {
@@ -338,7 +338,7 @@ body {
 .sub_title {
   text-align: end;
   color: var(--primary_text);
-  animation: slide_right 0.7s ease-out 0.2s 1 normal both;
+  animation: slide_right 0.7s cubic-bezier(.25,.05,.45,1.45) 0.2s 1 normal both;
 }
 
 .text_accent {
@@ -711,7 +711,7 @@ body {
 }
 
 .anim_right {
-  animation: slide_right 0.75s ease-out 0s 1 normal both;
+  animation: slide_right 0.75s cubic-bezier(.25,.05,.45,1.45) 0s 1 normal both;
 }
 
 .show {
@@ -719,11 +719,11 @@ body {
 }
 
 .show_contact {
-  animation: expand_contact 0.5s ease-out 0s 1 normal both;
+  animation: expand_contact 0.5s cubic-bezier(.25,.05,.45,1.45) 0s 1 normal both;
 }
 
 .text_slide {
-  animation: text_slide 0.5s ease-out 0s 1 normal both;
+  animation: text_slide 0.5s cubic-bezier(.25,.05,.45,1.45) 0s 1 normal both;
 }
 
 
