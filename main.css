@@ -115,7 +115,7 @@ body {
   transition: all 0.2s;
   left: 0;
   width: 100vw;
-  width: calc(var(--vw, 1vw) * 100);
+  /* width: calc(var(--vw, 1vw) * 100); */
 
   height: 0vh;
   height: calc(var(--vh, 1vh) * 0);
@@ -292,7 +292,8 @@ body {
 .outer_content_container {
   position: relative;
   min-height: calc(var(--vh, 1vh) * 100);
-  min-width: calc(var(--vw, 1vw) * 100);
+  /* width: 100vw; */
+  /* min-width: calc(var(--vw, 1vw) * 100); */
   width: 100%;
   display: flex;
   justify-content: center;
