@@ -28,12 +28,14 @@ function init() {
   const paragraphLines = document.querySelectorAll('.paragraph_line')
   const devicons = document.querySelectorAll('.devicon')
   const contactContainer = document.querySelector('.contact_container')
-  const aboutInterests = document.querySelector('.about_interests')
-  const aboutIntro = document.querySelector('.about_intro')
+  const aboutInterests = document.querySelectorAll('.about_interests p')
+  const aboutIntro = document.querySelectorAll('.about_intro p')
 
 
-  const scrollAnimElements = [...paragraphLines, ...devicons, contactContainer, aboutInterests, aboutIntro]
-
+  
+  const scrollAnimElements = [...paragraphLines, ...devicons, contactContainer, ...aboutInterests, ...aboutIntro]
+  
+  console.log(scrollAnimElements)
   // ! Canvas Lines Elements
   
   const linesCanvasBg = document.querySelector('#lines_canvas_bg')
@@ -607,6 +609,12 @@ function init() {
             element.classList.add('show_contact')
             break
           case 'about_content_inner about_interests':
+            element.classList.add('text_slide')
+            break
+          case 'about_content_paragraph':
+            element.classList.add('text_slide')
+            break
+          case 'about_content_paragraph text_left':
             element.classList.add('text_slide')
             break
           case 'about_content_inner about_intro':

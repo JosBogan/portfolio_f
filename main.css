@@ -632,7 +632,12 @@ body {
   margin: 10px 0;
 }
 
-.about_intro, .about_interests {
+/* .about_intro, .about_interests {
+  opacity: 0;
+  transform: translateX(100px);
+} */
+
+.about_content_paragraph {
   opacity: 0;
   transform: translateX(100px);
 }
