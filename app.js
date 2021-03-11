@@ -152,8 +152,8 @@ function init() {
       yNum: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().height / testDimensions.y)
     },
     offset: {
-      x: linesCanvasBg.parentElement.getBoundingClientRect().width % testDimensions.x  || testDimensions.x / 2,
-      y: linesCanvasBg.parentElement.getBoundingClientRect().height % testDimensions.y || testDimensions.y / 2
+      x: linesCanvasBg.parentElement.getBoundingClientRect().width % testDimensions.x  || testDimensions.x,
+      y: linesCanvasBg.parentElement.getBoundingClientRect().height % testDimensions.y || testDimensions.y
     }
   }
 
@@ -165,8 +165,8 @@ function init() {
       yNum: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().height / testDimensions.y)
     },
     offset: {
-      x: linesCanvasBgBot.parentElement.getBoundingClientRect().width % testDimensions.x || testDimensions.x / 2,
-      y: linesCanvasBgBot.parentElement.getBoundingClientRect().height % testDimensions.y || testDimensions.y / 2
+      x: linesCanvasBgBot.parentElement.getBoundingClientRect().width % testDimensions.x || testDimensions.x,
+      y: linesCanvasBgBot.parentElement.getBoundingClientRect().height % testDimensions.y || testDimensions.y
     }
   }
 
