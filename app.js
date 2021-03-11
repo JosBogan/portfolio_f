@@ -141,16 +141,39 @@ function init() {
   const linesHeightBot = linesCanvasBgBot.offsetHeight
 
 
+  const testDimensions = {
+    x: 25,
+    y: 25
+  }
+
+  const topStats = {
+    count: {
+      xNum: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().width / testDimensions.x),
+      yNum: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().height / testDimensions.y)
+    },
+    offset: {
+      x: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().width % testDimensions.x),
+      y: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().height % testDimensions.y)
+    }
+  }
+
+  const botStats = {
+    count: {
+      xNum: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().width / testDimensions.x),
+      yNum: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().height / testDimensions.y)
+    },
+    offset: {
+      x: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().width % testDimensions.x),
+      y: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().height % testDimensions.y)
+    }
+  }
+
 
   const dimensionsBot = {
     x: 20,
     y: 10
   }
 
-  const testDimensions = {
-    x: 40,
-    y: 40
-  }
 
   const dimensions = {
     x: 56,
@@ -169,12 +192,12 @@ function init() {
 
   const lineHeights = []
 
-  // ! TOP GRID INITIALISIONA
+  // ! TESTING STUFF
 
-  for (let x = gridDimensions.x / 2; x < window.innerWidth; x += gridDimensions.x) {
+  for (let x = topStats.offset.x / 2; x < window.innerWidth; x += testDimensions.x) {
     // ! Hard coded line distance method - find programmatic
     // let start = 0.1
-    for (let y = gridDimensions.y / 2; y < window.innerHeight; y += gridDimensions.y) {
+    for (let y = topStats.offset.y / 2; y < window.innerHeight; y += testDimensions.y) {
       linesCtxBg.fillStyle = '#AA7DCE'
       linesCtxBg.beginPath()
       
@@ -189,12 +212,10 @@ function init() {
     }
   }
 
-  // ! BOT GRID INITIALISATION
-
-  for (let x = gridDimensionsBot.x / 2; x < window.innerWidth; x += gridDimensionsBot.x) {
+  for (let x = botStats.offset.x / 2; x < window.innerWidth; x += testDimensions.x) {
     // ! Hard coded line distance method - find programmatic
     // let start = 0.1
-    for (let y = gridDimensionsBot.y / 2; y < window.innerHeight; y += gridDimensionsBot.y) {
+    for (let y = botStats.offset.y / 2; y < window.innerHeight; y += testDimensions.y) {
       linesCtxBgBot.fillStyle = '#AA7DCE'
       linesCtxBgBot.beginPath()
       
@@ -208,6 +229,48 @@ function init() {
       // start *= 1.65
     }
   }
+
+
+
+  // ! TOP GRID INITIALISATION
+
+  // for (let x = gridDimensions.x / 2; x < window.innerWidth; x += gridDimensions.x) {
+  //   // ! Hard coded line distance method - find programmatic
+  //   // let start = 0.1
+  //   for (let y = gridDimensions.y / 2; y < window.innerHeight; y += gridDimensions.y) {
+  //     linesCtxBg.fillStyle = '#AA7DCE'
+  //     linesCtxBg.beginPath()
+      
+  //     // linesCtxBg.arc(x, y + start , 1, 0, 2 * Math.PI)
+  //     // ! Better method, but need to find solution for mouse clipping
+  //     linesCtxBg.arc(x, y, 1, 0, 2 * Math.PI)
+  //     linesCtxBg.fill()
+  //     // if (lineHeights.length < 28) lineHeights.push(y + start)
+
+  //     // ! Hard coded line distance method - find programmatic
+  //     // start *= 1.65
+  //   }
+  // }
+
+  // ! BOT GRID INITIALISATION
+
+  // for (let x = gridDimensionsBot.x / 2; x < window.innerWidth; x += gridDimensionsBot.x) {
+  //   // ! Hard coded line distance method - find programmatic
+  //   // let start = 0.1
+  //   for (let y = gridDimensionsBot.y / 2; y < window.innerHeight; y += gridDimensionsBot.y) {
+  //     linesCtxBgBot.fillStyle = '#AA7DCE'
+  //     linesCtxBgBot.beginPath()
+      
+  //     // linesCtxBg.arc(x, y + start , 1, 0, 2 * Math.PI)
+  //     // ! Better method, but need to find solution for mouse clipping
+  //     linesCtxBgBot.arc(x, y, 1, 0, 2 * Math.PI)
+  //     linesCtxBgBot.fill()
+  //     // if (lineHeights.length < 28) lineHeights.push(y + start)
+
+  //     // ! Hard coded line distance method - find programmatic
+  //     // start *= 1.65
+  //   }
+  // }
 
 
   // ! Initialising the Bubbles canvas
@@ -382,9 +445,12 @@ function init() {
 
     if (mouseLocation.y > (linesCanvasBg.height + 20) && mouseLocation.y < window.pageYOffset + linesCanvasBgBot.getBoundingClientRect().top - 20) return
     
-    const clipPointX = (parseInt((mouseLocation.x) / gridDimensions.x) * gridDimensions.x) + gridDimensions.x / 2
+    // const clipPointX = (parseInt((mouseLocation.x) / gridDimensions.x) * gridDimensions.x) + gridDimensions.x / 2
+    const clipPointX = (parseInt((mouseLocation.x) / testDimensions.x) * testDimensions.x) + + topStats.offset.x / 2
 
-    const clipPointY = (parseInt((mouseLocation.y) / gridDimensions.y) * gridDimensions.y) + gridDimensions.y / 2
+    // const clipPointY = (parseInt((mouseLocation.y) / gridDimensions.y) * gridDimensions.y) + gridDimensions.y / 2
+
+    const clipPointY = (parseInt((mouseLocation.y) / testDimensions.y) * testDimensions.y) + topStats.offset.y / 2
 
     if (!pastClippedMouseLocation) {
       pastClippedMouseLocation = {
