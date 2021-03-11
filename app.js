@@ -152,10 +152,12 @@ function init() {
       yNum: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().height / testDimensions.y)
     },
     offset: {
-      x: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().width % testDimensions.x),
-      y: Math.floor(linesCanvasBg.parentElement.getBoundingClientRect().height % testDimensions.y)
+      x: linesCanvasBg.parentElement.getBoundingClientRect().width % testDimensions.x  || testDimensions.x / 2,
+      y: linesCanvasBg.parentElement.getBoundingClientRect().height % testDimensions.y || testDimensions.y / 2
     }
   }
+
+  console.log(topStats)
 
   const botStats = {
     count: {
@@ -163,8 +165,8 @@ function init() {
       yNum: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().height / testDimensions.y)
     },
     offset: {
-      x: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().width % testDimensions.x),
-      y: Math.floor(linesCanvasBgBot.parentElement.getBoundingClientRect().height % testDimensions.y)
+      x: linesCanvasBgBot.parentElement.getBoundingClientRect().width % testDimensions.x || testDimensions.x / 2,
+      y: linesCanvasBgBot.parentElement.getBoundingClientRect().height % testDimensions.y || testDimensions.y / 2
     }
   }
 
