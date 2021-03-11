@@ -585,6 +585,7 @@ body {
 .about_content_inner {
   margin: 30px 0;
   padding: 0 30px;
+  overflow: hidden;
 }
 
 .about_content p {
@@ -928,6 +929,12 @@ body {
     font-size: 1em;
   } */
   
+}
+
+@media screen and (max-width: 420px) {
+  .project_container {
+    width: auto;
+  }
 }
 
 @media screen and (max-width: 370px) {
